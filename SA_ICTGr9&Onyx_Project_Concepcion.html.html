@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Dancing+Script:wght@600&family=Delicious+Handrawn&family=Gemunu+Libre:wght@800&family=Lobster&family=Lora:ital,wght@1,500&family=Noto+Sans+Mono&family=Satisfy&family=Sono:wght@800&display=swap" rel="stylesheet">
+
+  <title>Length Conversion Calculator</title>
+  <style>
+    body {
+      background-color: pink;
+      color: black;
+      font-family: Dancing Script, cursive;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .input-group input[type="number"] {
+      padding: 10px;
+      width: 200%;
+      border: 3px solid #cccccc;
+      border-radius: 3px;
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      color: black;
+    }
+
+    .result-table th,
+    .result-table td {
+      padding: 20px;
+      text-align: center;
+      border: 2px solid black;
+    }
+
+    .result-table th {
+      background-color: #EE57AC  ;
+      color: white;
+    }
+  </style>
+  <script>
+    function convertLength() {
+      // Get the value entered by the user
+      var inputUnit = document.getElementById("inputUnit").value;
+      var inputValue = parseFloat(document.getElementById("inputValue").value);
+
+      // Convert the input value to millimeters
+      var millimeters = 0;
+      switch (inputUnit) {
+        case "millimeters":
+          millimeters = inputValue;
+          break;
+        case "centimeters":
+          millimeters = inputValue * 10;
+          break;
+        case "meters":
+          millimeters = inputValue * 1000;
+          break;
+        case "kilometers":
+          millimeters = inputValue * 1000000;
+          break;
+      }
+
+      // Convert millimeters to other units
+      var centimeters = millimeters / 10;
+      var meters = millimeters / 1000;
+      var kilometers = millimeters / 1000000;
+
+      // Display the converted values with unit symbols
+      document.getElementById("centimeters").textContent = centimeters.toFixed(2) + " cm";
+      document.getElementById("meters").textContent = meters.toFixed(2) + " m";
+      document.getElementById("kilometers").textContent = kilometers.toFixed(6) + " km";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Length Conversion Calculator</h1>
+
+    <div class="input-group">
+      <label for="inputValue">Enter a value:</label>
+      <input type="number" id="inputValue" oninput="convertLength()" />
+    </div>
+
+    <div class="input-group">
+      <label for="inputUnit">Select the input unit:</label>
+      <select id="inputUnit" onchange="convertLength()">
+        <option value="millimeters">Millimeters</option>
+        <option value="centimeters">Centimeters</option>
+        <option value="meters">Meters</option>
+        <option value="kilometers">Kilometers</option>
+      </select>
+    </div>
+
+    <table class="result-table">
+      <tr>
+        <th>Centimeters</th>
+        <th>Meters</th>
+        <th>Kilometers</th>
+      </tr>
+      <tr>
+        <td id="centimeters"></td>
+         <td id="meters"></td>
+<td id="kilometers"></td>
+</tr>
+</table>
+
+  </div>
+</body>
+</html>
